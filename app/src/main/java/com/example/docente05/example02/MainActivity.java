@@ -4,14 +4,69 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
 
+    private EditText EdtNum1;
+    private EditText EdtNum2;
+    private Button BtnMas;
+    private Button BtnMenos;
+    private Button BtnMult;
+    private Button BtnDiv;
+    private int valor=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        EdtNum1 = (EditText) findViewById(R.id.EdtNum1);
+        EdtNum2 = (EditText) findViewById(R.id.EdtNum2);
+        BtnMas = (Button) findViewById(R.id.BtnMas);
+        BtnMenos = (Button) findViewById(R.id.BtnMenos);
+        BtnMult= (Button) findViewById(R.id.BtnMult);
+        BtnDiv = (Button) findViewById(R.id.BtnDiv);
+        BtnMas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valor = Integer.parseInt(EdtNum1.getText().toString())+ Integer.parseInt(EdtNum2.getText().toString());
+                Toast.makeText(getApplicationContext(), "suma = "+valor,Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        BtnMenos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valor = Integer.parseInt(EdtNum1.getText().toString())- Integer.parseInt(EdtNum2.getText().toString());
+                Toast.makeText(getApplicationContext(), "Resta = "+valor,Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        BtnMult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valor = Integer.parseInt(EdtNum1.getText().toString())* Integer.parseInt(EdtNum2.getText().toString());
+                Toast.makeText(getApplicationContext(), "Multiplicación = "+valor,Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        BtnDiv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Integer.parseInt(EdtNum2.getText().toString())!=0) {
+                    valor = Integer.parseInt(EdtNum1.getText().toString()) / Integer.parseInt(EdtNum2.getText().toString());
+                }else{
+
+                    valor=0;
+                }
+                Toast.makeText(getApplicationContext(), "Div = "+valor,Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
     }
 
     @Override
